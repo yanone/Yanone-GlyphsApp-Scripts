@@ -2,15 +2,18 @@
 # -*- coding: utf-8 -*-
 
 '''
-This script goes through all component glyphs and adds missing intermediate masters (called "Brace Layers" in Glyphs) to the component glyphs where their 
-respective base glyphs have them. For instance, if an `e` has a brace layer, all glyphs based on it such as `é` etc. also need a brace layer at the same value.
+This script goes through all component glyphs and adds missing intermediate masters (called "Brace Layers" in Glyphs)
+to the component glyphs where their respective base glyphs have them. For instance, if an `e` has a brace layer, 
+all glyphs based on it such as `é` etc. also need a brace layer at the same value.
 
-This is necessary to create correct Variable Fonts in environments outside Glyphs (such as [googlefonts/fontmake](https://github.com/googlefonts/fontmake), 
-and even in Glyphs itself as of this writing, August 2019).
+This is necessary to create correct Variable Fonts in environments outside Glyphs 
+(such as [googlefonts/fontmake](https://github.com/googlefonts/fontmake), and even in Glyphs itself 
+as of this writing, August 2019).
 
-Otherwise, component glyphs’ metrics get interpolated linearly between the main masters, ignoring the intermediate masters, while the outlines get 
-interpolated correctly. This leads to sidebearing discrepancies of component glyphs with base glyphs referencing intermediate masters between 
-instances of a Variable Font and the same instance when generated statically from within Glyphs, when the metrics are interpolated correctly.
+Otherwise, component glyphs’ metrics get interpolated linearly between the main masters, ignoring the 
+intermediate masters, while the outlines get interpolated correctly. This leads to sidebearing discrepancies 
+of component glyphs with base glyphs referencing intermediate masters between instances of a Variable Font and 
+the same instance when generated statically from within Glyphs, when the metrics are interpolated correctly.
 '''
 
 from GlyphsApp import *
