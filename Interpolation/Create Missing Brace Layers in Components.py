@@ -53,10 +53,7 @@ for g in f.glyphs:
 					# Insert new brace layers
 					for layerName, associatedMasterId in createBraceLayerNames:
 						newLayer = GSLayer()
-						for component in g.layers[0].components:
-							newComponent = GSComponent(component.componentName)
-							newComponent.automaticAlignment = True
-							newLayer.components.append(newComponent)
-							newLayer.associatedMasterId = associatedMasterId
+						newLayer.associatedMasterId = associatedMasterId
 						newLayer.name = layerName
 						g.layers.append(newLayer)
+						newLayer.reinterpolate()
