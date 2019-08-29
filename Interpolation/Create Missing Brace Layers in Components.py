@@ -12,8 +12,7 @@ as of this writing, August 2019).
 
 Otherwise, component glyphs’ metrics get interpolated linearly between the main masters, ignoring the 
 intermediate masters, while the outlines get interpolated correctly. This leads to sidebearing discrepancies 
-of component glyphs with base glyphs referencing intermediate masters between instances of a Variable Font and 
-the same instance when generated statically from within Glyphs, when the metrics are interpolated correctly.
+of component glyphs with base glyphs referencing intermediate masters.
 '''
 
 from GlyphsApp import *
