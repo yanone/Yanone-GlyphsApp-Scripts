@@ -57,5 +57,6 @@ for g in f.glyphs:
 						newLayer.name = layerName
 						g.layers.append(newLayer)
 						newLayer.reinterpolate()
+						newLayer.syncMetrics()
 
 						print('Added layer %s to %s' % (layerName, g))
