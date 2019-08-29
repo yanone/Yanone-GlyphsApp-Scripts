@@ -57,3 +57,5 @@ for g in f.glyphs:
 						newLayer.name = layerName
 						g.layers.append(newLayer)
 						newLayer.reinterpolate()
+
+						print('Added layer %s to %s' % (layerName, g))
