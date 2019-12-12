@@ -29,3 +29,7 @@ Use this script only to generate static instances, not a Variable Font, as other
 ### Create Axis Location Custom Parameters
 
 In order to properly create instances from a VF using `fontmake`, the font needs to carry appropriate `Axis Location` custom parameters on the masters. This script creates them.
+
+### Create Instance weightClass Custom Parameters
+
+In order to properly create instances from a VF using `fontmake`, the font needs to carry appropriate `weightClass` parameters on the instances. This script creates them.
