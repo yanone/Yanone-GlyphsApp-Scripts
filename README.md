@@ -25,3 +25,7 @@ This is necessary as a workaround for environments that can’t properly deal wi
 The masters will simply be added to the font’s master list at the end, not their correct positions in the list, which does not affect the interpolation.
 
 Use this script only to generate static instances, not a Variable Font, as otherwise the font file size will increase. To create Variable Fonts, use the `Create Missing Brace Layers in Components` script.
+
+### Create Axis Location Custom Parameters
+
+In order to properly create instances from a VF using `fontmake`, the font needs to carry appropriate `Axis Location` custom parameters on the masters. This script creates them.
