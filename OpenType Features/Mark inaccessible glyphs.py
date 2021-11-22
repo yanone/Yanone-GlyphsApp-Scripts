@@ -85,9 +85,11 @@ try:
             else:
                 glyph.color = 0
 
-        # Mark all components white
+        # Mark all components or non-exporting glyphs white
         for glyph in font.glyphs:
-            if glyph.color is None:
+            if glyph.export is False:
+                glyph.color = None
+            elif glyph.color is None:
                 for layer in glyph.layers:
                     if layer.components:
                         for component in layer.components:
