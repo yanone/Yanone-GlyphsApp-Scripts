@@ -33,3 +33,15 @@ In order to properly create instances from a VF using `fontmake`, the font needs
 ### Create Instance weightClass Custom Parameters
 
 In order to properly create instances from a VF using `fontmake`, the font needs to carry appropriate `weightClass` parameters on the instances. This script creates them.
+
+## OpenType Features
+
+### Mark Inaccessible Glyphs
+
+Large fonts bear the potential to contain inaccessible glyphs. Those are glyphs that are neither encoded (have a Unicode value), nor are accessible through one of the OpenType features. 
+
+This script marks glyphs as *white* that are either encoded OR reachable through an OpenType substitution feature OR are contained in other glyphs as components. It marks glyphs *red* that are not encoded AND not reachable through OpenType AND not used as components.
+
+Depending on the setup of your font, you may want to either delete the inaccessible glyphs from your font or make them accessible.
+
+Tested only in Glyphs 3. This requires fontTools. Install it on the command line with `pip install fontTools`.
