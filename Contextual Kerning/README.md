@@ -23,6 +23,7 @@ In the `kern` feature, the contextual kerning values are then accessed through t
 The usage in the following sequence needs to be repeated for each contextual kerning situation:
 
 * ___Activate Contextual Kerning___ from menu
+* Confirm feature code definition of sequence in the _Macro Panel_
 * Manually adjust contextual kerning sequence across all masters
 * ___Save Contextual Kerning___ from menu
 

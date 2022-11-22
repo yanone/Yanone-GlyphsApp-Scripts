@@ -32,7 +32,6 @@ traditional_kerning_pair = [
     glyph_or_class(tab.textCursor),
 ]
 
-Glyphs.showMacroWindow()
 Glyphs.clearLog()
 
 if font.userData["de.yanone.contextualKerning.name"]:
