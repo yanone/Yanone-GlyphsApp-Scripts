@@ -14,19 +14,19 @@ Glyphs has only one dictionary to store kerning and no facility to process conte
 
 These scriptlets work around that by activating a _Contextual Kerning Mode_ where the traditional kerning UI/UX of Glyphs is hijacked to edit contextual kerning for the glyph sequence currently visible in the edit view. 
 
-Then, upon saving of the contextual kerning, the contextual kerning is stored in the so-called _Number Values_ of each font master (visible in the Masters tab of Font Info at the bottom) and the original traditional kerning is restored.
+Then, upon saving of the contextual kerning, the contextual kerning is stored in the so-called [Tokens](https://glyphsapp.com/learn/tokens) of each font master (visible in the Masters tab of Font Info at the bottom) and the original traditional kerning is restored.
 
-In the `kern` feature, the contextual kerning values are then accessed through the _Number Values_ by their variable name, e.g. `pos a' b c $contextualkerning;`.
+In the `kern` feature, the contextual kerning values are then accessed through the _Tokens_ by their variable name, e.g. `pos a' b c $contextualkerning;`.
 
 ## Usage
 
 The usage in the following sequence needs to be repeated for each contextual kerning situation:
 
-* _Activate Contextual Kerning_ from menu
-* Adjust contextual kerning across all masters
-* _Save Contextual Kerning_ from menu
+* ___Activate Contextual Kerning___ from menu
+* Manually adjust contextual kerning sequence across all masters
+* ___Save Contextual Kerning___ from menu
 
-Finally, you may use the scriptlet _Generate Kern Feature_ to put the feature code into your font’s `kern` feature before generating a font. This needs to be repeated only if the amount of contextual kerning pairs has changed, not their individual values.
+Finally, you may use the scriptlet _Generate Kern Feature_ to put the feature code into your font’s `kern` feature before generating a font. This needs to be repeated only if the amount of contextual kerning pairs has changed, or if kerning class members have changed, not their individual kerning values.
 
 ## Catch
 
