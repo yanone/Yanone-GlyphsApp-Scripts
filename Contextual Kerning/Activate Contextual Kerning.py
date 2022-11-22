@@ -32,8 +32,6 @@ traditional_kerning_pair = [
     glyph_or_class(tab.textCursor),
 ]
 
-Glyphs.clearLog()
-
 if font.userData["de.yanone.contextualKerning.name"]:
     print(f"Contextual kerning already active for {font.userData['de.yanone.contextualKerning.name']}. Save first.")
 else:
@@ -57,6 +55,7 @@ else:
     for master in font.masters:
         stored_contextual_kerning_values[master.id] = master.numberValueValueForName_(name)
 
+    Glyphs.clearLog()
     print(f'Contextual kerning activated for "{sequence}"')
 
     # Get stored kerning value from number values
