@@ -19,22 +19,34 @@ if font.userData["de.yanone.contextualKerning.name"]:
             tab.direction,
         )
 
-    # Set stored contextual kerning value
+    # See if we even need to save contextual kerning
+    save = False
     for master in font.masters:
-
-        # If user has deleted the kerning pair during the contextual kerning editing
-        # we want to set the contextual kerning value to 0 and the traditional kerning
-        # value to the stored value.
         if kerning_at_traditional_kerning_pair[master.id]:
             contextual_kerning_value = (kerning_at_traditional_kerning_pair[master.id] or 0) - (
                 font.userData["de.yanone.contextualKerning.traditionalKerningValue"][master.id] or 0
             )
-        else:
-            contextual_kerning_value = 0
-        master.setNumberValueValue_forName_(
-            contextual_kerning_value,
-            font.userData["de.yanone.contextualKerning.name"],
-        )
+            if contextual_kerning_value:
+                save = True
+
+    # Set stored contextual kerning value
+    for master in font.masters:
+
+        # Save only if there is a difference
+        if save:
+            # If user has deleted the kerning pair during the contextual kerning editing
+            # we want to set the contextual kerning value to 0 and the traditional kerning
+            # value to the stored value.
+            if kerning_at_traditional_kerning_pair[master.id]:
+                contextual_kerning_value = (kerning_at_traditional_kerning_pair[master.id] or 0) - (
+                    font.userData["de.yanone.contextualKerning.traditionalKerningValue"][master.id] or 0
+                )
+            else:
+                contextual_kerning_value = 0
+            master.setNumberValueValue_forName_(
+                contextual_kerning_value,
+                font.userData["de.yanone.contextualKerning.name"],
+            )
 
         # Restore traditional kerning value
         if font.userData["de.yanone.contextualKerning.traditionalKerningValue"][master.id]:
@@ -58,4 +70,7 @@ if font.userData["de.yanone.contextualKerning.name"]:
     font.userData["de.yanone.contextualKerning.traditionalKerningPair"] = ""
     font.userData["de.yanone.contextualKerning.traditionalKerningValue"] = ""
 
-    print("Contextual kerning saved and deactivated.")
+    if save:
+        print("Contextual kerning saved and deactivated.")
+    else:
+        print("Contextual kerning deactivated. Nothing was saved.")
