@@ -6,17 +6,17 @@ Currently, the first middle position of a 3-glyph-sequence is processed equivale
 
 Both `LTR` and `RTL` directions are processed. In case of `RTL`, `IgnoreMarks` is added to the final feature code, just FYI.
 
-Kerning classes are used when present. The kerning classes of the glyph side pointing towards the cursor is used. This currently prevents conttextual kerning exceptions, again for the lack of a user interface.
+Kerning classes are used when present. The kerning classes of the glyph side pointing towards the cursor is used. This currently prevents contextual kerning exceptions, again for the lack of a user interface.
 
 ## How it works
 
 Glyphs has only one dictionary to store kerning and no facility to process contextual kerning. 
 
-These scriptlets work around that by activating a _Contextual Kerning Mode_ where the traditional kerning UI/UX of Glyphs is hijacked to edit contextual kerning for the glyph sequence currently visible in the edit view. 
+These scriptlets work around that by activating a _Contextual Kerning Mode_ where the traditional kerning UI/UX of Glyphs is hijacked to edit contextual kerning for the glyph sequence currently visible in the edit view at the cursor position. 
 
 Then, upon saving of the contextual kerning, the contextual kerning is stored in the so-called [Tokens](https://glyphsapp.com/learn/tokens) of each font master (visible in the Masters tab of Font Info at the bottom) and the original traditional kerning is restored.
 
-In the `kern` feature, the contextual kerning values are then accessed through the _Tokens_ by their variable name, e.g. `pos a' b c $contextualkerning;`.
+In the `kern` feature, the contextual kerning values are then accessed through the _Tokens_ by their variable name, e.g. `pos a' b c $contextualkerning;`. When generating the font, the tokens are expanded into their numeric values and interpolated between masters. This is also supported in `glyphsLib`.
 
 ## Usage
 
@@ -27,11 +27,13 @@ The usage in the following sequence needs to be repeated for each contextual ker
 * Manually adjust contextual kerning sequence across all masters
 * ___Save Contextual Kerning___ from menu
 
-Finally, you may use the scriptlet _Generate Kern Feature_ to put the feature code into your font’s `kern` feature before generating a font. This needs to be repeated only if the amount of contextual kerning pairs has changed, or if kerning class members have changed, not their individual kerning values.
+Finally, you may use the scriptlet ___Generate Kern Feature___ to put the feature code into your font’s `kern` feature before generating a font. This needs to be repeated only if the amount of contextual kerning pairs has changed or if kerning class members have changed (because classes end up expanded in the feature code and that needs updating), not after you’ve adjusted individual contextual kerning values.
 
 ## Catch
 
 There is currently no easy way to delete contextual kerning pairs, as they are stored as a base32-encoded string which is not straightforward to manually process. Some UI for this will happen in the future. I will probably make it so that all defined contextual kerning sequences will open in a tab, one per line, and then there will be a command to delete an activated sequence.
+
+There is currently no support for exceptions to contextual kerning.
 
 ## Example
 
