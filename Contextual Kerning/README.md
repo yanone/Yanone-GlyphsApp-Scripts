@@ -19,6 +19,10 @@ Both `LTR` and `RTL` directions are processed. In case of `RTL`, `IgnoreMarks` i
 
 Kerning classes are used to identify the sequence when present. The kerning classes of the glyph side that’s pointing towards the cursor is used. This currently prevents contextual kerning exceptions, again for the lack of a user interface.
 
+## How to install
+
+What I do is check out this entire repository directly into the scripts folder of Glyphs. You would find these in the _Scripts_ menu of Glyphs under _Yanone-GlyphsApp-Scripts → Contextual Kerning_
+
 ## How it works under the hood
 
 Glyphs has only one dictionary to store kerning and no facility to process contextual kerning. 
