@@ -33,6 +33,12 @@ Then, upon saving of the contextual kerning, the contextual kerning is stored in
 
 In the `kern` feature, the contextual kerning values are then accessed through the _Tokens_ by their variable name, e.g. `pos a' b c $contextualkerning;`. When generating the font, the tokens are expanded into their numeric values and interpolated between masters. This is also supported in [glyphsLib](https://github.com/googlefonts/glyphsLib).
 
+In the UI hijacking that’s happening here, there may already be a _traditional_ kerning pair present where you also want to define a contextual kerning sequence. What the tool then does is to memorize that kerning in the background and restore it after you’ve saved the contextual kerning sequence. In the `kern` feature code you will then find that the kerning value consists only of the _difference_ between the traditional kerning and the contextual kerning. As the contextual kerning is necessarily defined in a separate lookup, both positioning adjustments will be added up by the text shaping engine in the end, resulting in the same positioning as you’ve defined it in the UI.
+
+**Example:** Imagine the sequence `L T`. You’ve already defined a traditional kerning pair for `L` and `space` because you want to reduce the gap by a little bit in any situation, defined as `pos L space -20`.
+
+Now you want to go the extra mile and add contextual kerning at the exact same cursor location, *when followed by the `T`* and you want to have that gap to be reduced by `-60` untis. The contextual kerning will then be `-60` minus `-20`, so the lookup will read `pos L' space T -40`. The shaping engine then processes both kerning, adding it up to `-60` again in the end.
+
 ## Usage
 
 The usage in the following sequence needs to be repeated for each contextual kerning situation:
