@@ -80,3 +80,8 @@ With contextual kerning:
 For faster access, create yourself custom keyboard shortcuts for at the very least `Activate Sequence` and `Save Sequence` (as these are the commonly used) for Glyphs.app in the Keyboard section of macOS’s System Preferences:
 
 ![](systempreferences.png)
+
+
+## Acknowledgements
+
+Thanks to Simon Cozens, Adam Twardoch, and Denis Moyogo Jacquerye for the discussion leading up to making this.
