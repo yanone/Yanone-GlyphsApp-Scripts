@@ -1,16 +1,25 @@
 # Proof of Concept: Contextual Kerning Mode for Glyphs 3
 
-`Warning: Code is in ALPHA stage quality. Backup your font before playing with it.`
-
 Makeshift scriptlets to edit contextual kerning in Glyphs.app and save that into the `kern` feature.
 
-Currently, the first middle position of a 3-glyph-sequence is processed equivalent to `pos a' b c -10;`, leaving the pre-context empty and setting the post-context to just the first glyph after the active kerning pair (cursor). Other pre and post contexts are thinkable but currently unsupported for lack of a user interface.
+`Warning: Code is in ALPHA stage quality. Backup your font before playing with it.`
 
-Both `LTR` and `RTL` directions are processed. In case of `RTL`, `IgnoreMarks` is added to the final feature code, just FYI.
+## Why does this exist?
 
-Kerning classes are used when present. The kerning classes of the glyph side pointing towards the cursor is used. This currently prevents contextual kerning exceptions, again for the lack of a user interface.
+No present-day font editor has a user interface to define contextual kerning. You can define normal kerning between two glyphs, akin to `pos a b -10`, but you can’t even have multiple kerning classes per glyph so that glyphs can perform differently in different situations, and neither can you define contextual kerning. These scriptlets solve the latter problem.
 
-## How it works
+Contextual kerning in its simplest form is kerning applied to a single kerning pair, *but only if followed by another glyph* (the context).
+In feature code, this is expressed as `pos a' b c -10`.
+
+## Current implementation
+
+The first inner position of a 3-glyph-sequence is processed equivalent to `pos a' b c -10`, leaving the pre-context empty and setting the post-context to just the first glyph after the active kerning pair (cursor). Other pre and post contexts are thinkable but currently unsupported for lack of a user interface.
+
+Both `LTR` and `RTL` directions are processed. In case of `RTL`, `IgnoreMarks` is also added to the final feature code, just FYI.
+
+Kerning classes are used to identify the sequence when present. The kerning classes of the glyph side that’s pointing towards the cursor is used. This currently prevents contextual kerning exceptions, again for the lack of a user interface.
+
+## How it works under the hood
 
 Glyphs has only one dictionary to store kerning and no facility to process contextual kerning. 
 
@@ -33,11 +42,11 @@ Finally, you may use the scriptlet ___Generate Kern Feature___ to put the featur
 
 You can also load all stored sequences with ___Show All Defined Sequences___ and delete a sequence with ___Delete Sequence___ (after activation, as you need to confirm precisely which sequence you’re working on)
 
-## Catch
+## Limitations
 
-There is currently no easy way to delete contextual kerning pairs, as they are stored as a base32-encoded string which is not straightforward to manually process. Some UI for this will happen in the future. I will probably make it so that all defined contextual kerning sequences will open in a tab, one per line, and then there will be a command to delete an activated sequence.
-
-There is currently no support for exceptions to contextual kerning.
+* I couldn’t find a way yet to programmatically delete a _Token_ from a font master. I need to ask Georg how to do that. Until that's possible, "deleting" a sequence will actually set all values to 0. This is dumb because it will still end up in your feature code like that, just not have any effect. Looking for a solution to this.
+* There is currently no support for exceptions to contextual kerning and I'm not sure how to go about this.
+* When showing all defined sequences, I wanted to show the one line at a time, but adding `GSControlCharacter` items to the tab results in an error in Glyphs. Again, I need to consult with Georg for that. Until then, the sequences are simply separated by a word space.
 
 ## Example
 
@@ -55,6 +64,6 @@ With contextual kerning:
 
 ## Keyboard Shortcuts
 
-For easy menu access, create yourself custom keyboard shortcuts for `Activate Contextual Kerning` and `Save Contextual Kerning` for Glyphs.app in the system preferences:
+For faster access, create yourself custom keyboard shortcuts for at the very least `Activate Sequence` and `Save Sequence` (as these are the commonly used) for Glyphs.app in the Keyboard section of macOS’s System Preferences:
 
 ![](systempreferences.png)
