@@ -41,6 +41,8 @@ Now you want to go the extra mile and add contextual kerning at the exact same c
 
 ## Usage
 
+*Hint: Check the Macro Panel for print-outs for each command.*
+
 The usage in the following sequence needs to be repeated for each contextual kerning situation:
 
 * ___Activate Sequence___ from menu
