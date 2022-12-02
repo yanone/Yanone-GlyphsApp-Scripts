@@ -22,12 +22,14 @@ In the `kern` feature, the contextual kerning values are then accessed through t
 
 The usage in the following sequence needs to be repeated for each contextual kerning situation:
 
-* ___Activate Contextual Kerning___ from menu
+* ___Activate Sequence___ from menu
 * Confirm feature code definition of sequence in the _Macro Panel_
 * Manually adjust contextual kerning sequence across all masters
-* ___Save Contextual Kerning___ from menu
+* ___Save Sequence___ from menu
 
 Finally, you may use the scriptlet ___Generate Kern Feature___ to put the feature code into your font’s `kern` feature before generating a font. This needs to be repeated only if the amount of contextual kerning pairs has changed or if kerning class members have changed (because classes end up expanded in the feature code and that needs updating), not after you’ve adjusted individual contextual kerning values.
+
+You can also load all stored sequences with ___Show All Defined Sequences___ and delete a sequence with ___Delete Sequence___ (after activation, as you need to confirm precisely which sequence you’re working on)
 
 ## Catch
 
