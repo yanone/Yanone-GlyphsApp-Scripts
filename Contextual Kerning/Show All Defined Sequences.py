@@ -34,17 +34,20 @@ def first_glyph_in_class(class_name, direction):
 sequences = {}
 
 for variable in [number.name() for number in font.masters[0].numbers()]:
-    sequence = base64.b32decode(variable.replace("_", "=")).decode()
-    direction, code = sequence.split(": ")
-    direction = direction.split(" ")[1]
+    try:
+        sequence = base64.b32decode(variable.replace("_", "=")).decode()
+        direction, code = sequence.split(": ")
+        direction = direction.split(" ")[1]
 
-    code = code.replace("'", "")
-    for class_name in class_match.findall(code):
-        code = code.replace(class_name, f"{first_glyph_in_class(class_name, direction)}")
+        code = code.replace("'", "")
+        for class_name in class_match.findall(code):
+            code = code.replace(class_name, f"{first_glyph_in_class(class_name, direction)}")
 
-    if direction not in sequences:
-        sequences[direction] = []
-    sequences[direction].append(code)
+        if direction not in sequences:
+            sequences[direction] = []
+        sequences[direction].append(code)
+    except:
+        pass
 
 for direction in sequences:
     if sequences[direction]:
