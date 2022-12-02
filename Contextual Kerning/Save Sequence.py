@@ -1,4 +1,4 @@
-# MenuTitle: Save Contextual Kerning
+# MenuTitle: Save Sequence
 # -*- coding: utf-8 -*-
 
 from GlyphsApp import Glyphs

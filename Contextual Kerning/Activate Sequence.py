@@ -1,4 +1,4 @@
-# MenuTitle: Activate Contextual Kerning
+# MenuTitle: Activate Sequence
 # -*- coding: utf-8 -*-
 
 from GlyphsApp import Glyphs, GSRTL
