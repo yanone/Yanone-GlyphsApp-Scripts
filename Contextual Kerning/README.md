@@ -1,4 +1,6 @@
-# Proof of Concept: Contextual Kerning Mode for Glyphs 3 (ALPHA)
+# Proof of Concept: Contextual Kerning Mode for Glyphs 3
+
+## Warning: Code is in ALPHA stage quality. Backup your font before playing with it.
 
 Makeshift scriptlets to edit contextual kerning in Glyphs.app and save that into the `kern` feature.
 
