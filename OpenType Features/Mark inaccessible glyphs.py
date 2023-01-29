@@ -76,15 +76,20 @@ try:
             else:
                 glyph.color = 0
 
+        def markComponents(glyph):
+            # for layer in glyph.layers:
+            layer = glyph.layers[0]
+            if layer.components:
+                for component in layer.components:
+                    component.component.color = None
+                    markComponents(component.component)
+
         # Mark all components or non-exporting glyphs white
         for glyph in font.glyphs:
             if glyph.export is False:
                 glyph.color = None
             elif glyph.color is None:
-                for layer in glyph.layers:
-                    if layer.components:
-                        for component in layer.components:
-                            component.component.color = None
+                markComponents(glyph)
 
         font.enableUpdateInterface()
 
