@@ -25,9 +25,10 @@ import traceback
 
 try:
     from fontTools.ttLib import TTFont
+    from fontTools.subset import main as pyftsubset
+
 except:
     Message("This script requires fontTools. Please install it in the command line using 'pip install fontTools'")
-
 
 font = Glyphs.font
 font.disableUpdateInterface()
@@ -60,17 +61,7 @@ try:
     )
 
     # Run pyftsubset (throws out the inaccessible glyphs)
-    r = subprocess.run(
-        [
-            "/usr/local/bin/pyftsubset",
-            path,
-            f"--unicodes=*",
-            f"--layout-features=*",
-        ],
-        capture_output=True,
-    )
-    if r.stderr:
-        print("Error in pyftsubset:\n\n", r.stderr)
+    pyftsubset([path, "--unicodes=*", "--layout-features=*"])
 
     # Read results
     if os.path.exists(outPath):
