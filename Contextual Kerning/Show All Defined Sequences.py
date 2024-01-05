@@ -12,7 +12,7 @@ Glyphs.clearLog()
 
 class_match = re.compile(r"(@[a-zA-Z0-9_.-]+)")
 
-NEWLINE = font.glyphs["space"].layers[font.selectedFontMaster.id]
+NEWLINE = GSControlLayer(10)
 
 
 def first_glyph_in_class(class_name, direction):
@@ -56,8 +56,9 @@ for direction in sequences:
             glyphs = [font.glyphs[name] for name in sequence.split(" ")]
             lines.extend([glyph.layers[font.selectedFontMaster.id] for glyph in glyphs] + [NEWLINE])
 
-        font.newTab(lines)
-        tab = font.tabs[-1]
+        tab = font.newTab()
+        tab.layers = lines
+
         if direction == "RTL":
             tab.direction = GSRTL
         else:

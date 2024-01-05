@@ -58,7 +58,6 @@ You can also load all stored sequences with ___Show All Defined Sequences___ and
 
 * I couldn’t find a way yet to programmatically delete a _Token_ from a font master. I need to ask Georg how to do that. Until that's possible, "deleting" a sequence will actually set all values to 0. This is dumb because it will still end up in your feature code like that, just not have any effect. Looking for a solution to this.
 * There is currently no support for exceptions to contextual kerning and I'm not sure how to go about this.
-* When showing all defined sequences, I wanted to show the one line at a time, but adding `GSControlCharacter` items to the tab results in an error in Glyphs. Again, I need to consult with Georg for that. Until then, the sequences are simply separated by a word space.
 * It’s kind of dumb to expand kerning classes into enumerated sequences (`[a b c ...]`) in the feature code, but this was the only way I could make this work for both *Glyphs* as well as *glyphsLib*. In the end it doesn’t matter, as kerning classes don’t exist in OpenType fonts anyway. What exists as classes in the source file ends up enumerated in the font in the end for each lookup. Just make sure that you update the feature code whenever you change kerning class members.
 
 ## Example
